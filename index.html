@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./bootstrap.css">
+</head>
+<body>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <header class="mt-2">
+      <h1>Etch-A-Sketch</h1>
+    </header>
+    <div class="d-flex flex-row justify-content-center align-items-center">
+      <div id="options-left" class='options'></div>
+      <div id="etch">
+      </div>
+      <div id="options-right" class='options'>
+        <input type="color" id="colorInput">
+        <div onclick="clearScreen()" id="clear" class="btn">
+          <h3>Clear</h3>
+        </div>
+      </div>
+    </div>
+    <div id="options-below" class="d-flex flex-row align-items-center justify-content-evenly">
+      <h5>1</h5>
+      <input type="range" id="grid-size" name="size" min="1" max="100">
+      <h5>100</h5>
+    </div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>
