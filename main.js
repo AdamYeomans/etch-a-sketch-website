@@ -1,20 +1,51 @@
 const makeGrid = (rows, cols) => {
   const container = document.getElementById('etch');
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
-  }
+  // while (container.firstChild) {
+  //   container.removeChild(container.firstChild);
+  // }
+  clearScreen();
   container.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
   container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
   const divsCount = rows * cols;
-  for (let index = 0; index < divsCount; index++) {
-    const element = document.createElement("div");
-    element.onmouseenter = function(){mouseEnter(element)};
-    container.appendChild(element);
+  // var currentCount = container.children.length;
+  if (container.children.length < divsCount) {
+    while (container.children.length < divsCount) {
+      const element = document.createElement("div");
+      element.onmouseenter = function(){mouseEnter(element)};
+      container.appendChild(element);
+    }
+  }
+  else {
+    while (container.children.length > divsCount) {
+      container.removeChild(container.firstChild);
+    }
   }
 }
 
 const mouseEnter = (element) => {
-  element.style.backgroundColor = currentColor;
+  if (currentMode === 'Color') {
+    element.style.backgroundColor = currentColor;
+    element.className = "";
+  } 
+  else if (currentMode === 'Rainbow') {
+    var currentRainbow = genHexCode();
+    element.style.backgroundColor = currentRainbow;
+    element.className = "";
+  }
+  else if (currentMode === 'Greyscale') {
+    if (element.style.backgroundColor == "" || element.style.backgroundColor == undefined || element.className == "" || element.className == undefined) {
+      element.style.backgroundColor = "#EEEEEE";
+      element.className = "E";
+      return;
+    }
+    let color = element.className;
+    let indexOfColor = hexCodes.indexOf(color);
+    let newColor =  (indexOfColor == 0) ? hexCodes[0] : hexCodes[indexOfColor - 1];
+    let returnCol = "#" + newColor + newColor + newColor + newColor + newColor + newColor;
+    element.className = newColor;
+    console.log(`elementbg = ${element.style.backgroundColor} \n color = ${color} \n indexOfColor = ${indexOfColor} \n returnCol = ${returnCol}`)
+    element.style.backgroundColor = returnCol;
+  }
 }
 
 const clearScreen = () => {
@@ -29,19 +60,38 @@ const clearScreen = () => {
 const bindInput = () => {
   const colorInput = document.getElementById("colorInput");
   colorInput.addEventListener("input", function(){
-    // console.log(colorInput.value);
     currentColor = colorInput.value;
   });
   const gridInput = document.getElementById("grid-size");
   gridInput.addEventListener("input", function(){
-    // console.log(colorInput.value);
     makeGrid(gridInput.value, gridInput.value);
   });
+  gridInput.value = 16;
+}
+
+const mode = (modeType) => {
+  if (modeType === 'Color') {
+    currentMode = 'Color';
+  } 
+  else if (modeType === 'Rainbow') {
+    currentMode = 'Rainbow';
+  }
+  else if (modeType === 'Greyscale') {
+    currentMode = 'Greyscale';
+  }
+}
+
+const genHexCode = () => {
+  let code = "#";
+  for (let index = 0; index < 6; index++) {
+    code += hexCodes[Math.floor(Math.random() * hexCodes.length)];
+  }
+  return code;
 }
 
 var currentColor = "#000000";
-
-
+var currentMode = 'Color';
+const hexCodes = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
 
 makeGrid(16,16);
 bindInput();

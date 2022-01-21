@@ -1,7 +1,7 @@
 #etch {
     display: grid;
-    width: 80vmin;
-    height: 80vmin;
+    width: 75vmin;
+    height: 75vmin;
     /* width: 100vw;
     height: 80vh; */
     background-color: white;
@@ -22,33 +22,31 @@ body {
 
 .options {
     background-color: rgba(84, 84, 84, 0.193);
-    height: 80vmin;
-    width: 100px;
+    height: 75vmin;
+    width: 10vmin;
     display: flex;
     flex-direction: column;
 }
 
 #options-left {
-    border-radius: 15px 0px 0px 15px;
+    border-radius: 5px 0px 0px 5px;
 }
 
 #options-right {
-    border-radius: 0px 15px 15px 0px;
+    border-radius: 0px 5px 5px 0px;
 }
 
 #options-below {
     background-color: rgba(84, 84, 84, 0.193);
-    height: 80vmin;
-    width: 100px;
     display: flex;
     flex-direction: column;
-    border-radius: 0 0 15px 15px;
-    width: 80vmin;
-    height: 10vmin;
+    border-radius: 0 0 5px 5px;
+    width: 75vmin;
+    height: 5vmin;
 }
 
 #colorInput{
-    border-radius: 0 15px 0 0;
+    border-radius: 0 5px 0 0;
     height: 50%;
     width: 100%;
     border: none;
@@ -62,20 +60,20 @@ body {
 }
 #colorInput::-webkit-color-swatch {
     border: none;
-    border-radius: 0 15px 0 0;
+    border-radius: 0 5px 0 0;
 }
 #colorInput::-moz-color-swatch-wrapper {
     padding: 0;
 }
 #colorInput::-moz-color-swatch {
     border: none;
-    border-radius: 0 15px 0 0;
+    border-radius: 0 5px 0 0;
 }
 
 #clear {
     height: 50%;
     width: 100%;
-    border-radius: 0 0 15px 0;
+    border-radius: 0 0 5px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,4 +81,12 @@ body {
 
 #grid-size {
     width: 80%;
+}
+
+.mode-icon {
+    width: 80%;
+}
+
+img {
+    width: 100%;
 }

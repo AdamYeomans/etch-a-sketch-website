@@ -14,13 +14,23 @@
       <h1>Etch-A-Sketch</h1>
     </header>
     <div class="d-flex flex-row justify-content-center align-items-center">
-      <div id="options-left" class='options'></div>
+      <div id="options-left" class='options d-flex flex-column justify-content-evenly align-items-center'>
+        <div class="mode-icon" onclick="mode('Color')">
+          <img src="./paint-icon.svg">
+        </div>
+        <div class="mode-icon" onclick="mode('Rainbow')">
+          <img src="./rainbow-icon.svg">
+        </div>
+        <div class="mode-icon" onclick="mode('Greyscale')">
+          <img src="./black-and-white-icon.svg">
+        </div>
+      </div>
       <div id="etch">
       </div>
       <div id="options-right" class='options'>
         <input type="color" id="colorInput">
         <div onclick="clearScreen()" id="clear" class="btn">
-          <h3>Clear</h3>
+          <img class="mode-icon" src="./wipe-icon.svg">
         </div>
       </div>
     </div>
