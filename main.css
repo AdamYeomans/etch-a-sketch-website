@@ -90,3 +90,11 @@ body {
 img {
     width: 100%;
 }
+
+.page-content {
+    min-height: 95vh !important;
+}
+
+footer {
+    min-height: 5vh;
+}

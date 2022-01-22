@@ -43,7 +43,6 @@ const mouseEnter = (element) => {
     let newColor =  (indexOfColor == 0) ? hexCodes[0] : hexCodes[indexOfColor - 1];
     let returnCol = "#" + newColor + newColor + newColor + newColor + newColor + newColor;
     element.className = newColor;
-    console.log(`elementbg = ${element.style.backgroundColor} \n color = ${color} \n indexOfColor = ${indexOfColor} \n returnCol = ${returnCol}`)
     element.style.backgroundColor = returnCol;
   }
 }
@@ -63,9 +62,9 @@ const bindInput = () => {
     currentColor = colorInput.value;
   });
   const gridInput = document.getElementById("grid-size");
-  gridInput.addEventListener("input", function(){
+  gridInput.addEventListener("input", debounce(() => {
     makeGrid(gridInput.value, gridInput.value);
-  });
+  }, 1000));
   gridInput.value = 16;
 }
 
@@ -87,6 +86,16 @@ const genHexCode = () => {
     code += hexCodes[Math.floor(Math.random() * hexCodes.length)];
   }
   return code;
+}
+
+function debounce(callback, wait) {
+  let timerId;
+  return (...args) => {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      callback(...args);
+    }, wait);
+  };
 }
 
 var currentColor = "#000000";
